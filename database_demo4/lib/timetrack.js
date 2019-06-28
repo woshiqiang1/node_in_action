@@ -20,7 +20,7 @@ exports.parseReceivedData = (req, callback) => {
 
 exports.actionForm = (id, path, label) => {
   let html = `
-  <form method="post" action="${path}">
+  <form method="POST" action="${path}">
     <input type="hidden" name="id" value="${id}" />
     <input type="submit" value="${label}" />
   </form>
@@ -73,7 +73,7 @@ exports.archive = (db, req, res) => {
 }
 
 exports.show = (db, res, showArchived) => {
-  let query = 'SELECT FROM work WHERE archived=? ORDER BY date DESC'
+  let query = 'SELECT * FROM work WHERE archived=? ORDER BY date DESC'
   let archiveValue = showArchived ? 1 : 0
   db.query(
     query,
@@ -109,7 +109,7 @@ exports.workHitlistHtml = rows => {
           <td>${item.date}</td>
           <td>${item.hours}</td>
           <td>${item.description}</td>
-          <td>${exports.workArchiveForm(rows[i].id)}</td> 
+          <td>${exports.workArchiveForm(item.id)}</td> 
         </tr>
         `
       }
@@ -119,7 +119,7 @@ exports.workHitlistHtml = rows => {
         <td>${item.date}</td>
         <td>${item.hours}</td>
         <td>${item.description}</td>
-        <td>${exports.workDeleteForm(rows[i].id)}</td> 
+        <td>${exports.workDeleteForm(item.id)}</td> 
       </tr>
         `
       }
@@ -131,7 +131,7 @@ exports.workHitlistHtml = rows => {
 
 exports.workFormHtml = () => {
   const html = `
-  <form>
+  <form method="POST" action="/">
     <p>
       Date (YYYY-MM-DD): <br/>
       <input name="date" type="text" />
