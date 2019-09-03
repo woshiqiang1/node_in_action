@@ -1,0 +1,5 @@
+console.log('hello word')
+console.log('hello everybody')
+console.log('hello earth')
+console.log('hello china')
+console.log('hello uk')

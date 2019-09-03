@@ -3,6 +3,8 @@ var express = require('express')
 var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
+var bodyParser = require('body-parser')
+var methodOverride = require('method-override')
 
 let indexRouter = require('./routes/index')
 let usersRouter = require('./routes/users')
@@ -28,6 +30,8 @@ app.set('photos', path.join(__dirname, '/public/photos'))
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(methodOverride())
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -52,8 +56,8 @@ app.use(function(err, req, res, next) {
   res.render('error')
 });
 
-app.listen(3000, () => {
-  console.log('server listening port 3000')
+app.listen(3002, () => {
+  console.log('server listening port 3002')
 })
 
-// module.exports = app
+module.exports = app

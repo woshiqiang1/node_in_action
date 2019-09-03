@@ -27,3 +27,7 @@ a{
 .photo img{
   height: 100px;
 }
+
+.row{
+  margin-top: 1rem;
+}
